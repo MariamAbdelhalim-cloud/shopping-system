@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <fstream>
+using namespace std;
+
+// ================= Order =================
+class Order {
+public:
+    int id;
+    string productName;
+    int quantity;
+    double total;
+
+    Order() {}
+    Order(int i, string p, int q, double t)
+        : id(i), productName(p), quantity(q), total(t) {}
+};
+
+// ================= SAVE TO FILE =================
+void saveOrder(Order &o) {
+    ofstream file("orders.txt", ios::app);
+    file << o.id << " " << o.productName << " " << o.quantity << " " << o.total << "\n";
+}
+
+// ================= REPORT =================
+void reportOrder(Order &o) {
+    cout << "\n--- Order Created ---\n";
+    cout << "ID       : " << o.id << "\n";
+    cout << "Product  : " << o.productName << "\n";
+    cout << "Quantity : " << o.quantity << "\n";
+    cout << "Total    : " << o.total << "\n";
+}
+
+// ================= CREATE ORDER =================
+void createOrder(vector<Order> &orders, int id, string productName, int quantity, double total) {
+    Order o(id, productName, quantity, total);
+    orders.push_back(o);
+    saveOrder(o);
+    reportOrder(o);
+}
+
+// ================= MAIN =================
+int main() {
+    vector<Order> orders;
+
+    // استخدميها هنا
+    // createOrder(orders, ...);
+
+    return 0;
+}
